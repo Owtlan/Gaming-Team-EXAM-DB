@@ -2,7 +2,7 @@ const User = require('../models/User');
 const { hash, compare } = require('bcrypt')
 
 
-async function register(username, password) {
+async function register(username, email, password) {
     const existing = await getUserByUsername(username)
 
     if (existing) {
@@ -13,6 +13,7 @@ async function register(username, password) {
 
     const user = new User({
         username,
+        email,
         hashedPassword
     });
 
