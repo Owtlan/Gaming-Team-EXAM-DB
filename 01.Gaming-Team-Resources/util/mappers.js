@@ -20,7 +20,7 @@ function gameViewModel(game) {
         image: game.image,
         price: game.price,
         description: game.description,
-        genre: post.genre,
+        genre: game.genre,
     }
 }
 
