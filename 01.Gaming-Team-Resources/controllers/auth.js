@@ -5,7 +5,7 @@ const mapErrors = require('../util/mappers')
 
 
 router.get('/register', isGuest(), (req, res) => {
-    res.render('register')
+    res.render('register', { title: 'Register Page' })
 })
 
 router.post('/register', isGuest(), async (req, res) => {
@@ -18,16 +18,16 @@ router.post('/register', isGuest(), async (req, res) => {
         }
 
         const user = await register(req.body.username, req.body.email, req.body.password)
-        req.session.user = user;
+        req.session.user = user;;
         res.redirect('/')
     } catch (err) {
         console.log(err);
         const errors = mapErrors(err)
+
         const data = {
             username: req.body.username,
             email: req.body.email,
         };
-
 
         res.render('register', { title: 'Register Page', data, errors });
     }

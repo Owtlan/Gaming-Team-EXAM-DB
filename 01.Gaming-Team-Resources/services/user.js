@@ -4,7 +4,7 @@ const { hash, compare } = require('bcrypt')
 
 async function register(username, email, password) {
     const existing = await getUserByUsername(username)
-
+    console.log(existing);
     if (existing) {
         throw new Error('Username is taken');
     }
@@ -21,7 +21,7 @@ async function register(username, email, password) {
 
     return user;
 }
-
+// 123123
 //LOGIN
 async function login(username, password) {
     const user = await getUserByUsername(username)
@@ -31,7 +31,7 @@ async function login(username, password) {
     }
 
     const hasMatch = compare(password, user.hashedPassword)
-
+    console.log(hasMatch);
 
     if (!hasMatch) {
         throw new Error('Incorrect username or password');
