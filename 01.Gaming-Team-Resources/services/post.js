@@ -1,7 +1,7 @@
 const Game = require('../models/Game');
 
-async function createPost(game) {
-    const result = new Game(game)
+async function createPost(gameData) {
+    const result = new Game(gameData)
 
     await result.save()
     return result

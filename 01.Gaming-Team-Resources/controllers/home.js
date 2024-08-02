@@ -18,6 +18,19 @@ router.get('/catalog', async (req, res) => {
     res.render('catalog', { title: 'Catalog', games })
 })
 
+router.get('/catalog/:id', async (req, res) => {
+    const id = req.params.id;
+    const game = gameViewModel(await getPostById(id))
 
+
+    if (req.session.user) {
+        game.hasUser = true
+        if (req.session.name._id == this.post.owner._id) {
+            post.isAuthor = true;
+        }
+    }
+
+    res.render('details', { title: post.title, game })
+})
 
 module.exports = router

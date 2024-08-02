@@ -3,16 +3,16 @@
         <h1>Game Trade Code</h1>
         <div class="offer-list">
 
-            {{#each posts}}
+            {{#each games}}
 
             {{> gamePreview}}
+            {{else}}
+            <div class="no-offer">
+                <p>There are no game offers found!</p>
+            </div>
 
         </div>
 
-        {{else}}
-        <div class="no-offer">
-            <p>There are no game offers found!</p>
-        </div>
 
 
         {{/each}}
