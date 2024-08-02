@@ -12,4 +12,19 @@ function mapErrors(err) {
 
 }
 
-module.exports = mapErrors;
+
+function gameViewModel(game) {
+    return {
+        _id: game._id,
+        name: game.name,
+        image: game.image,
+        price: game.price,
+        description: game.description,
+        genre: post.genre,
+    }
+}
+
+module.exports = {
+    mapErrors,
+    gameViewModel
+}
