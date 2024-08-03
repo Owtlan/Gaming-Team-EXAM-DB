@@ -25,12 +25,12 @@ router.get('/catalog/:id', async (req, res) => {
 
     if (req.session.user) {
         game.hasUser = true
-        if (req.session.name._id == this.post.owner._id) {
-            post.isAuthor = true;
+        if (req.session.name._id == games.author._id) {
+            game.isAuthor = true;
         }
     }
 
-    res.render('details', { title: post.title, game })
+    res.render('details', { title: game.title, game })
 })
 
 module.exports = router
