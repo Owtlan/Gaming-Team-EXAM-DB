@@ -21,7 +21,8 @@ function gameViewModel(game) {
         price: game.price,
         description: game.description,
         genre: game.genre,
-        platform: game.platform
+        platform: game.platform,
+        owner: game.owner
     }
 }
 
