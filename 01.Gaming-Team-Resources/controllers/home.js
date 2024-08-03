@@ -28,6 +28,9 @@ router.get('/catalog/:id', async (req, res) => {
 
         if (req.session.user._id.toString() == game.owner._id) {
             game.isAuthor = true;
+        }else{
+            game.hasBuy = game.boughtBy.find(v => v._id == req.session.user._id) != undefined
+
         }
     }
 

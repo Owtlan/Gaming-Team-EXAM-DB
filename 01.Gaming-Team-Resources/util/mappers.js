@@ -22,7 +22,17 @@ function gameViewModel(game) {
         description: game.description,
         genre: game.genre,
         platform: game.platform,
-        owner: game.owner
+        owner: game.owner,
+        boughtBy: (game.boughtBy || []).map(buyViewModel),
+    }
+}
+
+
+
+function buyViewModel(user) {
+    return {
+        _id: user._id,
+        email: user.email,
     }
 }
 

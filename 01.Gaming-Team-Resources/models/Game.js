@@ -22,10 +22,7 @@ const gameSchema = new Schema({
         required: true,
         enum: ['PC', 'Nintendo', 'PS4', 'PS5', 'XBOX']
     },
-    boughtBy: [{
-        type: ObjectId,
-        ref: 'User'
-    }],
+    boughtBy: [{ type: ObjectId, ref: 'User', required: true }],
     owner: { type: ObjectId, ref: 'User', required: true },
 })
 
