@@ -1,7 +1,7 @@
 
 const router = require('express').Router()
 const { isUser } = require('../middleware/guards')
-const { createPost } = require('../services/post')
+const { createPost, getPostById, updateGame } = require('../services/post')
 const { mapErrors, gameViewModel } = require('../util/mappers')
 const Game = require('../models/Game');
 
@@ -58,8 +58,50 @@ router.post('/buy/:id', async (req, res) => {
         const errors = mapErrors(error);
         res.render('details', { title: 'Error', game: await gameViewModel(Game.findById(gameId)), errors });
     }
+})
 
 
+router.get('/edit/:id', isUser(), async (req, res) => {
+    const id = req.params.id
+    const game = gameViewModel(await getPostById(id))
+
+
+    if (req.session.user._id != game.owner._id) {
+
+        return res.redirect('/login')
+    }
+    res.render('edit', { title: 'Edit Post', game })
+
+})
+
+
+router.post('/edit/:id', isUser(), async (req, res) => {
+    const id = req.params.id;
+    const existing = gameViewModel(await getPostById(id))
+
+
+    if (req.session.user._id != existing.owner._id) {
+        return res.redirect('/login')
+    }
+
+    const game = {
+        name: req.body.name,
+        image: req.body.image,
+        price: req.body.price,
+        description: req.body.description,
+        genre: req.body.genre,
+        platform: req.body.platform,
+    }
+
+    try {
+        await updateGame(id, game)
+        res.redirect('/catalog/' + id)
+    } catch (err) {
+        console.error(err);
+        const errors = mapErrors(err)
+        game._id = id
+        res.render('edit', { title: 'Edit Post', game, errors });
+    }
 })
 
 module.exports = router
