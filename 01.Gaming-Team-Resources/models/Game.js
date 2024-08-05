@@ -4,7 +4,7 @@ const URL_PATTERN = /^https?:\/\/(.+)/;
 
 
 const gameSchema = new Schema({
-    name: { type: String, minlength: [6, 'Name must be at least 6 characters long'] },
+    name: { type: String, minlength: [4, 'Name must be at least 4 characters long'] },
     image: {
         type: String,
         validate: {
@@ -14,7 +14,7 @@ const gameSchema = new Schema({
             message: 'Image must be a valid URL'
         }
     },
-    price: { type: Number },
+    price: { type: Number, min: [0, 'Price must be a positive number'] },
     description: { type: String, minlength: [8, 'Description must be at most 8 characters long'] },
     genre: { type: String },
     platform: {

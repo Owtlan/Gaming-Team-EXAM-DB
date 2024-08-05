@@ -59,7 +59,6 @@ router.post('/buy/:id', async (req, res) => {
     }
 })
 
-
 router.get('/edit/:id', isUser(), async (req, res) => {
     const id = req.params.id
     const game = gameViewModel(await getPostById(id))
