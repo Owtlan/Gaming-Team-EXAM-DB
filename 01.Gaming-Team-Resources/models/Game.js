@@ -15,8 +15,8 @@ const gameSchema = new Schema({
         }
     },
     price: { type: Number, min: [0, 'Price must be a positive number'] },
-    description: { type: String, minlength: [8, 'Description must be at most 8 characters long'] },
-    genre: { type: String },
+    description: { type: String, minlength: [10, 'Description must be at most 10 characters long'] },
+    genre: { type: String, minlength: [2, 'The genre should be at least two characters long'] },
     platform: {
         type: String,
         required: true,
