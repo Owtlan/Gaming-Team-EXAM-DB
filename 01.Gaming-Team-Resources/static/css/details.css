@@ -17,6 +17,7 @@
   min-height:400px;
   height: auto;
   margin: auto;
+  overflow: hidden;
 }
 
 #details-info h1 {

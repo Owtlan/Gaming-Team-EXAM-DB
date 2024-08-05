@@ -33,9 +33,15 @@ async function updateGame(id, game) {
     await existing.save()
 }
 
+async function deleteGame(id) {
+    return Game.findByIdAndDelete(id)
+}
+
+
 module.exports = {
     getPosts,
     getPostById,
     createPost,
-    updateGame
+    updateGame,
+    deleteGame
 }
