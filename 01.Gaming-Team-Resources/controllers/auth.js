@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const { isUser, isGuest } = require('../middleware/guards')
 const { register, login } = require('../services/user')
-const mapErrors = require('../util/mappers')
+const { mapErrors } = require('../util/mappers')
 
 
 router.get('/register', isGuest(), (req, res) => {

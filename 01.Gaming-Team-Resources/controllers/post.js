@@ -1,4 +1,5 @@
 
+
 const router = require('express').Router()
 const { isUser } = require('../middleware/guards')
 const { createPost, getPostById, updateGame, deleteGame } = require('../services/post')
@@ -104,8 +105,6 @@ router.post('/edit/:id', isUser(), async (req, res) => {
     }
 })
 
-
-
 router.get('/delete/:id', isUser(), async (req, res) => {
     const id = req.params.id;
     const existing = gameViewModel(await getPostById(id))
@@ -122,5 +121,9 @@ router.get('/delete/:id', isUser(), async (req, res) => {
         const errors = mapErrors(err)
         res.render('details', { title: existing.title, errors });
     }
+})
+
+router.get('/404', (req, res) => {
+    res.render('404', { title: 'Page Not Found' });
 })
 module.exports = router
