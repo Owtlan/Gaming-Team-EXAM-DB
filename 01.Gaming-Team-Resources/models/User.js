@@ -8,7 +8,7 @@ const EMAIL_PATTERN = /^([a-zA-Z]+)@([a-zA-Z]+)\.([a-zA-Z-]+)$/
 const userSchema = new Schema({
 
     username: {
-        type: String, minlength: [5, 'First name must be at least 3 characters long'], validate: {
+        type: String, minlength: [5, 'First name must be at least 5 characters long'], validate: {
             validator(value) {
                 return NAME_PATTERN.test(value)
             },
@@ -16,11 +16,11 @@ const userSchema = new Schema({
         }
     },
     email: {
-        type: String, required: [true, 'Email is required'], validate: {
+        type: String, minlength: [10, 'The email should be at least ten character long'], required: [true, 'Email is required'], validate: {
             validator(value) {
                 return EMAIL_PATTERN.test(value)
             },
-            message: 'Email must be valid and may contain only english letters'
+            message: [10, 'The email should be at least ten character long']
         }
     },
     hashedPassword: { type: String, required: true }

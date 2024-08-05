@@ -5,12 +5,9 @@ const { gameViewModel } = require('../util/mappers')
 
 const router = require('express').Router()
 
-
-
 router.get('/', (req, res) => {
     res.render('home', { title: 'Home page' })
 })
-
 
 router.get('/catalog', async (req, res) => {
 

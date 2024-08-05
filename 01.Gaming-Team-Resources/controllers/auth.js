@@ -6,6 +6,9 @@ const { mapErrors } = require('../util/mappers')
 
 router.get('/register', isGuest(), (req, res) => {
     res.render('register', { title: 'Register Page' })
+
+    console.log(req.password);
+
 })
 
 router.post('/register', isGuest(), async (req, res) => {
@@ -15,6 +18,8 @@ router.post('/register', isGuest(), async (req, res) => {
             throw new Error('Password is required');
         } else if (req.body.password != req.body.repass) {
             throw new Error('Passwords don\'t match');
+        } else if (req.body.password.length < 4) {
+            throw new Error('The password should be at least four characters long.');
         }
 
         const user = await register(req.body.username, req.body.email, req.body.password)
@@ -38,8 +43,6 @@ router.post('/register', isGuest(), async (req, res) => {
 router.get('/login', isGuest(), (req, res) => {
     res.render('login')
 })
-
-
 
 router.post('/login', isGuest(), async (req, res) => {
     try {

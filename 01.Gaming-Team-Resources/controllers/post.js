@@ -1,5 +1,3 @@
-
-
 const router = require('express').Router()
 const { isUser } = require('../middleware/guards')
 const { createPost, getPostById, updateGame, deleteGame } = require('../services/post')
